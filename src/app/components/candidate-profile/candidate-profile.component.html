@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="column">
+        <form [formGroup]="candidateProfileForm" (ngSubmit)="onSubmit()">
+            <div class="createProfile" id="createProfile" data-backdrop="static" data-keyboard="false">
+                <div class="form-group">
+                    <span class="addProfile" style="color: #007bff">Candidate's Profile Entry</span>
+                </div>
+                <div class="form-group"><span class="fullwidth" style="color: #007bff">Full Name : </span>
+                    <input class="form-control" ng-model="name" id="name" type="text" formControlName="name" required>
+                    <div
+                        *ngIf="(!candidateProfileForm.get('name').pristine || submitted) && candidateProfileForm.get('name').hasError('required')">
+                        <span style="color: red;">Name field can't be blank</span>
+                    </div>
+                </div>
+
+                <div class="form-group"><span class="fullwidth" style="color: #007bff">MobileNo : </span>
+                    <input class="form-control" id="inputdefault" type="text" formControlName="mobileno" required>
+                    <div
+                        *ngIf="(!candidateProfileForm.get('mobileno').pristine || submitted) && candidateProfileForm.get('mobileno').hasError('required')">
+                        <span style="color: red;">Mobile number field can't be blank</span>
+                    </div>
+                    <div
+                        *ngIf="(!candidateProfileForm.get('mobileno').pristine || submitted) && candidateProfileForm.get('mobileno').hasError('minlength')">
+                        <span style="color: red;">Mobile number must be 10 digits</span>
+                    </div>
+                    <div
+                        *ngIf="(!candidateProfileForm.get('mobileno').pristine || submitted) && candidateProfileForm.get('mobileno').hasError('pattern')">
+                        <span style="color: red;">Only Numbers are allowed</span>
+                    </div>
+                </div>
+                <div class="form-group"><span class="fullwidth" style="color: #007bff">email-id : </span>
+                    <input class="form-control" id="inputdefault" type="text" formControlName="emailid" required>
+                    <div
+                        *ngIf="(!candidateProfileForm.get('emailid').pristine || submitted) && candidateProfileForm.get('emailid').hasError('required')">
+                        <span style="color: red;">email-id can't be blank</span>
+                    </div>
+                    <div
+                        *ngIf="(!candidateProfileForm.get('emailid').pristine || submitted) && candidateProfileForm.get('emailid').hasError('minlength')">
+                        <span style="color: red;">The email-id requied atleast 5 characters</span>
+                    </div>
+                    <div
+                        *ngIf="(!candidateProfileForm.get('emailid').pristine || submitted) && candidateProfileForm.get('emailid').hasError('pattern')">
+                        <span style="color: red;">The email-id is not valid</span>
+                    </div>
+                </div>
+                <div class="form-group"><span class="fullwidth" style="color: #007bff">Select Skill : </span>
+                    <input class="form-control" id="inputdefault" type="text" formControlName="skill" required>
+                    <div
+                        *ngIf="(!candidateProfileForm.get('skill').pristine || submitted) && candidateProfileForm.get('skill').hasError('required')">
+                        <span style="color: red;">Please enter skill</span>
+                    </div>
+                </div>
+                <div class="form-group"><span class="fullwidth" style="color: #007bff">Years Of Exp : </span>
+                    <input class="form-control" id="inputdefault" type="text" formControlName="experience" required>
+                    <div
+                        *ngIf="(!candidateProfileForm.get('experience').pristine || submitted) && candidateProfileForm.get('experience').hasError('required')">
+                        <span style="color: red;">Please enter experience</span>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary primary-button-style" data-toggle="modal"
+                        data-target="#myModal">Submit</button>
+                    <button type="reset" class="btn btn-primary">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="column">
+        <span>
+            <img class="examiner" src="/assets/OnlineTest.jpg">
+        </span>
+    </div>
+</div>
+
+<!--Open Modal-->
+<div class="modal" id="myModal">
+    <div class="modal-dialog" style="height: 200px;width: 450px;">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Candidate's Profile Status</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div *ngIf="data && data.status">
+                    <span class="profilesuccess">Congratulation {{data.name}} !</span>
+                    <span class="profilesuccess"> Your profile created successfully for Online Test.</span>
+                    <span class="profilesuccess">Please click on Exam Instructions link below.
+
+                       <h6><a href="http://localhost:4200/instructions">Exam Instructions</a> !</h6></span>
+                </div>
+                <div *ngIf="data && !data.status">
+                    <span class="profileError">Hello, {{data.name}}</span>
+                    <span class="profileError">Your profile is already registered !</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Close Modal-->

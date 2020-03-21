@@ -1,0 +1,32 @@
+<div class="center">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="container marginTop">
+            <div class="row">
+                <div class="col-sm-12"><span class="loginHeader marginTop">LOGIN</span></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12"><span>Please enter your username and password.</span></div>
+            </div>
+            <div>
+                <label for="usr">UserName:</label>
+                <input type="text" class="form-control" id="usr">
+            </div>
+            <br />
+            <div>
+                <label for="usr">Password:</label>
+                <input type="text" class="form-control" id="usr">
+            </div>
+
+
+            <div class="row marginTop">
+                <div class="col-sm-6">
+                    <button type="button" [disabled]="loading" class="btn btn-primary" data-target="#selectBuilding"
+                        data-toggle="modal" (click)="showModal($event)">Login</button>
+                </div>
+                <div class="col-sm-6">
+                    <a href="" class="decoration">Forgot Password ?</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
